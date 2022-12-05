@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #app{color: red;}
+        table{border: 1px solid;width: 500px;margin: auto;border-collapse: collapse;text-align: center;}
+        td{border: 1px solid;height: 50px;}
+    </style>
+</head>
+<body>
+    <table id="table"> </table>
+    <script>
+        var data=[{name:"小明",age:18,salary:3500},{name:"小红",age:19,salary:4500},{name:"小刚",age:20,salary:5500},
+        {name:"小强",age:21,salary:6500},{name:"小陈",age:22,salary:7500},{name:"小白",age:23,salary:8500}];
+        var table=document.getElementById("table")
+        var tr=document.createElement("tr")
+        table.appendChild(tr);
+        //创建表头
+        for(var key in  data[0]){
+            var td=document.createElement("td")
+            td.innerHTML=key
+            tr.appendChild(td);
+        }
+        //追加数据行
+        for(var i=0;i<data.length;i++){
+            var tr=document.createElement("tr")
+            table.appendChild(tr);
+            for(var key in data[i]){
+                var td=document.createElement("td")
+                tr.appendChild(td)
+                td.innerHTML=data[i][key]
+            }
+        }
+      
+    </script>
+</body>
+</html>

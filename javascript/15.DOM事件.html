@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DoM事件</title>
+    <style>
+        #title{width: 200px;height: 200px;background:red;margin: auto;}
+        .usetip,.psdtip{display: none;color: red;}
+    </style>
+</head>
+<body>
+    <div id="title">hello</div>
+    <div id="change">改变</div>
+    <input type="text" id="user"> //表单属性
+    
+    <br> 
+    <input id="use" placeholder="请输入你的用户名">
+    <span class="usetip">您的用户名输入有误，请重新输入</span>
+    <br>
+    <input id="psd" type="password" placeholder="请输入你的密码">
+    <span class="psdtip">您的密码输入有误，请重新输入</span>
+    <button id="btn">登录</button>
+    <script>   
+        //事件：onclick onmouseover onmouseout onmousemove 
+        var title=document.getElementById("title");
+        // title.onmouseover=function fn(){
+        //     console.log(111) //移入
+        // }
+        // title.onmouseout=function fn(){
+        //     console.log(222) //移出
+        // }
+        // title.onmousemove=function fn(){
+        //     console.log("中国移动") //划过时调用
+        // } 
+        var change=document.getElementById("change")
+        change.onclick=function(){
+            title.style.background="blue";
+            title.innerHTML="hahahahaha"
+            //title.style.display="none" //我tm直接隐藏
+        }
+        var user=document.getElementById("user")
+        user.onblur=function(){
+            console.log("我失去焦点了") //失焦 当鼠标移开输入框点击时为失焦
+        }
+        user.onfocus=function(){
+            console.log("我获得焦点了")//获得焦点 当鼠标点击到输入框时获得
+        }
+        var use=document.getElementById("use")
+        var psd=document.getElementById("psd")
+        var btn=document.getElementById("btn")
+        var usetip=document.getElementsByClassName("usetip")[0];//它是一个数组，所以需要加角标0
+        var psdtip=document.getElementsByClassName("psdtip")[0]
+        var regUse=/^[0-9a-zA-Z]{4,8}$/;
+        var regPsd=/^\d{6}$/;
+        // use.onblur=function(){ //onblur为失去焦点  use.value为use的值 !为取反 即如果不满足
+        //    if(regUse.test(use.value)){  
+        //         usetip.style.display="none"
+        //     }else{
+        //         usetip.style.display="block"
+        //     }
+        // }
+        // psd.onblur=function(){ //onblur为失去焦点  psd.value为use的值 !为取反 即如果不满足
+        //    if(regPsd.test(psd.value)){  
+        //         psdtip.style.display="none"
+        //     }else{
+        //         psdtip.style.display="block"
+        //     }
+        // }  //用户名和密码的正则表达式 上面两种代码  结构一样 所以应该要有封装思想 都是相同的验证结构，只是参数不同
+        function check(reg,value,ele){
+            if(reg.test(value)){
+                ele.style.display="none"
+            }else{
+                ele.style.display="block"
+            }
+        } //封装  
+        //use.onblur=check(regUse,use.value,usetip) 语法错误 onblur后面要跟函数或者命名一个函数 正确用法如下
+        use.onblur=function(){
+            check(regUse,use.value,usetip)  //只有失去焦点的时候才调用 调用完才会执行函数，里面的函数才会创建使用
+        } //调用封装
+        psd.onblur=function() {
+            check(regPsd,psd.value,psdtip)
+        } //效果想当于上面未封装时候的两段式 
+        /*
+            作业：
+                写一个注册页面要求
+                    1：用户名输入框 4-8数字字母组合
+                    2：密码输入框 6位纯数字
+                    3：确认密码输入框 要求如果输入的跟密码不一样提示，两次密码不一致
+                    4：手机号输入框 标准手机号
+                    5：注册按钮 点注册按钮的时候任意一项有错或者没填，都需要alert提示，请填写正确信息
+        */
+    </script>
+</body>
+</html>

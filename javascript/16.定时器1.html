@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定时器2</title>
+</head>
+<body>
+    <!-- <div id="title" onclick="fn()">标题</div> -->
+    <button id="btn">按钮</button>
+    <button id="stop1">停止</button>
+    <div id="timer1"></div>
+    <button id="btn1">获取验证码</button>
+    <script>
+        /* //function fn(){
+        //     alert(1)
+        // } 内联方式绑定
+        var a=setInterval(function(){console.log(123)},1000)
+        setInterval(function(){console.log(321)},1000)
+        console.log(a) //返回结果为1 这个1是线程号 
+        clearInterval(1)//停止定时器 需要知道停止定时器的线程号 但实际不用 而是var一个变量，停止这个变量*/
+        var btn=document.getElementById("btn")
+        var stop1=document.getElementById("stop1")
+        var a=null;//满足了设置全局变量，也有了变量存储
+        btn.onclick=function(){
+            a=setInterval(function(){console.log("hello")},1000)
+        }
+        stop1.onclick=function(){
+            clearInterval(a);
+            a=null;//全局变量的内存释放掉，减轻性能问题，提高性能
+        }      
+        // console.log(ms) //返回的是毫秒数 
+        var target=new Date("2022-12-25 00:00:00");
+        var timer1=document.getElementById("timer1")
+        function clock(){
+            var now=new Date();
+            var ms=target-now;
+            if(ms>0){
+                var d=Math.floor(ms/1000/60/60/24);
+                    d=d>=10?d:"0"+d
+                var h=Math.floor((ms-d*24*60*60*1000)/1000/60/60)
+                    h=h>=10?h:"0"+h
+                var m=Math.floor((ms-d*24*60*60*1000-h*60*60*1000)/1000/60)
+                    m=m>=10?m:"0"+m
+                var s=Math.floor((ms-d*24*60*60*1000-h*60*60*1000-m*60*1000)/1000)
+                    s=s>=10?s:"0"+s
+                timer1.innerHTML="距离圣诞节还有"+d+"天"+h+"时"+m+"分"+s+"秒";
+            }else{
+                timer1.innerHTML="圣诞节到了,happy"
+                clearInterval(timer1);
+                timer=null;
+            }
+           
+        }  //封装一个函数，只要给一个时间就能算倒计时
+        var timer=null;
+        window.onload=function(){  //window.onload指页面加载完毕后才开始执行
+            timer=setInterval(clock,1000)
+        }
+        var btn1=document.getElementById("btn1")
+        var timer2=null;
+        var n=5;
+        function getCode(){
+            btn1.disabled=true
+            if(n>0){
+                n--;
+                btn1.innerHTML=n+"s后获取验证码"
+            }else{
+                clearInterval(timer2);
+                timer2=null;
+                btn1.disabled=false;
+                btn1.innerHTML="获取验证码";
+                n=5;
+            }
+            
+        };
+        btn1.onclick=function(){
+            btn1.disabled=true; 
+            timer2=setInterval(getCode,1000)
+        }
+         
+    </script>
+</body>
+</html>

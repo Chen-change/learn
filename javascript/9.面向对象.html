@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象</title>
+    <style> 
+    </style>
+</head>
+<body>
+    <script>
+        //面向对象：需要学习各个对象，熟记他们的属性和方法，在实现需求的时候能够正确的使用正确对象的正确方法
+        /*面向对象：通过操作对象去实现需求，不关心其中的过程 
+        面向过程：
+        内置对象：js中已经存在的，有着现成的属性和方法供我们使用 js中一共26个内置对象 
+        自定义对象：我们自己创建的对象
+        创建对象的两种方式：
+            1.对象字面量的形式 var obj={"name":"小明"} 
+            2.通过构造函数 var obj=new Student()
+        基本包装类型：为了便于操作“基本类型值”，JS提供了三个特殊的引用类型:Boolean、Number、String。
+        这些类型和其他引用类型相似，但同时 也具备 与各自基本 类型相应的特殊行为。 
+        实际上：每当读取一个基本类型值的时候， “后台就会创建一个对应的基本包装类型的对象”，从能能够调用一些方法来操作这些数据。*/
+        /*内置对象中,有三个特殊的对象,称之为基本包装类型
+        1.String:字符串是不容修改的
+            length
+            toUpperCase()转大写 toLowerCase(转小写) 验证密码的时候可以使用，统一密码大小写
+            substring(截取子字符串) 含头不含尾 如果只给一个参数，代表从哪一位开始截取，截到最后 
+            slice()同上 indexOf(查找关键字) 关键字符的角标 找到就结束 找不到返回-1 
+            toString(转成字符串) split(切割符) 可以把字符串切割成数组 一定会切成数组
+            indexOf(要查找的字符)查找关键字
+        2.Boolean
+        3.Number
+        */
+       var a="hello";
+       console.log(a.length)//5
+       // a=a.toUpperCase();//字符串没法改,所以需要我们通过重新赋值修改
+       // console.log(a)//HELLO
+       // var b=a.indexOf("e") 查询结果为1 它在1位置
+       // var b=a.indexOf("l") 查询结果为2 它在2位置 默认只找第一个 后面的位置不计算
+       // var b=a.indexOf("h") 查询结果为0 它在0位置 
+       var words=["借我点钱","转账","支付宝","银行卡","充话费","密码","投资","微信支付"];
+       var say="我是秦始皇,当年我没有病死,现在我有难,希望你借我点钱,支付宝转账500块,投资我,明年登基你当大臣";
+       var sai="别叫别叫，出来喝酒"
+       for(i=0;i<words.length;i++){
+        if(say.indexOf(words[i])!=-1){ //找不到数字的话返回-1 !-1代表有返回值
+            alert("请核实对方身份,注意财产安全!");
+            break
+        }
+       }
+       var str="hello";
+       var arr=str.split("e")
+       console.log(arr)// ['h', 'llo'] 从e切割 
+       var arr=str.split("l")
+       console.log(arr)// ['he', '', 'o'] 两个空字符中间一定要切割点什么
+       var c=str.substring(1,3)
+       console.log(c)// el 含头不含尾 如果只给一个参数，代表从哪一位开始截取，截到最后
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型与继承</title>
+</head>
+<body>
+    <script>
+        /*原型(prototype)：方法背后，专门保存由方法创建出来的对象的共有属性 本身也是一个对象 其实就是构造函数的一个属性,值是个对象 只有函数才有原型
+        1.对象字面量的形式 var obj={name:"小明",age:18}
+        2.通过构造函数的形式 new Date() new Array() new Object() new RegExp()
+        构造函数/对象模板：专门用来创建相同结构对象的专门方法
+        共有属性：由同一构造函数创建出来的对象共同享有的属性 个体可以使用但不拥有
+        自有属性：属于对象实例私有的属性
+        任何对象没有权利修改原型中的属性
+        继承：使用现有类型，创建出新的类型，新的类型可以使用现有类型的属性和方法，也
+        可以拓展出现有类型没有的属性和方法*/
+        function Student(name,age){
+            this.name=name;// ==this.a=name
+            this.age=age;
+        }
+        var li=new Student("李雷",18) //这是一个对象
+        var hmm=new Student("韩梅梅",17)
+        li.car="bmw";//对象加属性等于新值
+        console.log(li)   //Student {name: '李雷', age: 18, car: 'bmw'}
+        Student.prototype.car="bmw"  //给原型添加共有属性
+        console.log(hmm) //Student {name: '韩梅梅', age: 17}  对象属性不变,这个bmw不是hmm的车但是
+        console.log(hmm.car) //bmw hmm没有拥有bmw这辆车 但可以使用 直接查找也可查找到
+        Student.prototype.dance=function(){alert("i can dance")}
+        li.dance()
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>广告骚扰</title>
+    <style>
+        #adv{width: 400px;height: 250px;position: fixed;right: 0px;bottom: -250px;}
+        #hide{height: 24px;}
+    </style>
+</head>
+<body>
+    <div id="adv">
+        <div id="hide">关闭</div>
+        <img src="../2.javascript/img/twly.png" width="100%" height="226px"/>
+    </div>
+    <script>
+        var adv=document.getElementById("adv")
+        function moveUp(){
+            //先取到元素的bottom值
+            var advStyle=document.defaultView.getComputedStyle(adv,null) //获取到元素的所有样式,会把默认值都打出来   
+            var bottom=parseInt(advStyle.bottom);//取bottom的值
+            if(bottom<0){
+                bottom+=4;
+                adv.style.bottom=bottom+"px"
+            }else{
+                clearInterval(timer);
+                timer=null;
+            }
+        }
+        
+        //点击关闭时向下
+        var hide=document.getElementById("hide")
+        function moveDown(){
+            var advStyle=document.defaultView.getComputedStyle(adv,null) //获取到元素的所有样式,会把默认值都打出来   
+            var bottom=parseInt(advStyle.bottom);//取bottom的值  这一句和上一句很重要,可以获取相关盒子的内联值
+            if(bottom>-250){
+                bottom-=4;
+                adv.style.bottom=bottom+"px"
+            }else{
+                clearInterval(timer);
+                timer=null;   //会出现一个问题 定时器会多开
+                timer2=setTimeout(function(){timer=setInterval(moveUp,10)},2000) //需要重新打开定时器,间隔5秒钟后
+                //在一次性定时器里面,去把周期性定时器打开
+            }
+        }
+        hide.onclick=function(){
+            // clearInterval(timer)
+            // timer=0; 当这定时器运行时,停止其他定时器工作
+            if(!timer){timer=setInterval(moveDown,10)} //如果定时器不存在,才会运行该定时器
+            
+        }
+       var timer=null;
+       var timer2=null;
+        window.onload=function(){
+            timer=setInterval(moveUp,10)
+        }
+    </script>
+</body>
+</html>

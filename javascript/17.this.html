@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this</title>
+</head>
+<body>
+    <div id="app">hello</div>
+    <div id="user">Hi!</div>
+    <div>张三</div>
+    <div>李四</div>
+    <div>王五</div>
+    <div>赵六</div>
+    <div>韩七</div>
+    <script>
+        /*
+            this:程序中的关键字,代表的时当前对象
+                函数运行时候所在的对象(对象调用函数,函数中的this指向调用该函数的对象);        
+        */
+       var obj={name:"小明",age:18,intr:function(){console.log(this)}}
+       obj.intr();//Object age: 18  intr: ƒ ()  name: "小明"  [[Prototype]]: Object 它指向的是这个对象
+        var app=document.getElementById("app")
+        app.onclick=function(){
+            console.log(this) //这里的this指的是id为app的div 
+        }
+        function check(){
+            console.log(this) //直接定义的函数里面的this指向的就是window 基本就这种特殊情况会指向window
+        }
+        var user=document.getElementById("user")
+        user.onclick=function(){
+            check() //当点击user时,出现的结果为window的值
+        }
+        var x=10
+            var obj={
+                x:100,
+                getx:function(){
+                    console.log(this.x)
+                }        
+            }
+            // var a=obj.getx; 定义a为obj里面的那个getx 而getx为一个函数
+            // var a=function(){
+            //     console.log(this.x)
+            // }
+            function a(){
+                console.log(this.x)
+            } //相当于上面两个 这里的this指向的就是window 我们在window中定义了x 为10
+
+            a();//10
+            //张三李四王五题,当我们点击div时 能够弹窗出它的文本内容
+            var divs=document.getElementsByTagName("div")
+            for(var i=0;i<divs.length;i++){
+                divs[i].onclick=function(){
+                    //alert(divs[i].innerHTML)  //出错原因 这里的onclick没有触发 最终都为停止后的i,而最终的i不存在
+                    alert(this.innerHTML) //这就是修改方法,谁点击我 谁就是这个this
+                }
+            }
+            //i时全局变量还是局部变量  全局
+            //全局变量可以不可以有多个值 不可以
+            //在我点击之前,循环结束了吗  结束了
+            //循环结束之后 i是几 7;
+            //在我们点之前 只有一个i就是7
+    </script>
+</body>
+</html>

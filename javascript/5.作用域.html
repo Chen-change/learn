@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作用域</title>
+</head>
+<body>
+    <script>
+        /*function getIndex(sex,height,weight){
+            var index=weight/(height*height)
+            var result
+            if (sex =="男"){
+                if(index<20){
+                    result ="过轻"
+                }else if(index<25){
+                    result ="适中"
+                }else if(index<30){
+                    result ="过重"
+                }else if(index<35){
+                    result ="肥胖"
+                }else {
+                    result ="非常肥胖"
+                }
+            } else{
+                if(index<19){
+                    result ="过轻"
+                }else if(index<24){
+                    result ="适中"
+                }else if(index<29){
+                    result ="过重"
+                }else if(index<35){
+                    result ="肥胖"
+                }else {
+                    result ="非常肥胖"
+                }
+            }
+            return result
+        }
+        console.log(getIndex("男",1.60,75))  bmi指数 */
+        // 对于未声明的变量直接赋值，那么js会自动在全局声明 6.变量声明提升：
+        // 变量声明语句会自动提升到当前作用域最顶部 
+        // var a=1;
+        // function fn(){
+        //     a =5
+        // }
+        // console.log(a) 此时结果为1 因为函数没有调用 下一条重新算
+        // var a=1;
+        // function fn(){
+        //     a =5
+        // }
+        // fn()
+        // console.log(a) 此时调用了函数，a的结果改变，所以结果为5，a为全局变量，因为它是在全局中声明
+        // var a=1;
+        // function fn(){
+        //     var a=5;
+        //     a=4;
+        // }
+        // fn()
+        // console.log(a) 此时a为1 因为改变的值是局部变量中定义的a的值，结果输出的值为全局变量中的a，两者没有关系
+        // var a=1;
+        // function fn(){
+        //     a=6;
+        //     console.log(a)
+        //     var a=5;
+        //     console.log(a)
+        //     a=4;
+        //     console.log(a)
+        // };
+        // fn()
+        // console.log(a) 结果为6.5.4.1 因为在局部函数中，声明的变量会自动提前，所以在局部函数中声明过的变量都为局部变量
+        // 所以fn中的函数相当于先声明局部变量a，再给a分别赋值了6,5,4，这和外层的全局变量a无关系.
+        var a=5;
+        function fn(){
+            console.log(a) //a=undefined
+            var a=4
+            console.log(a)//a=4
+        }
+        fn()
+        console.log(a) //a=5 若是fn中不重新定义a 则输出的值为5,4,4 输出的a都是全局变量
+    </script>
+</body>
+</html>

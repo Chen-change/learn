@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DoM</title>
+    <style>
+        #app{color: red;}
+        table{border: 1px solid;width: 500px;margin: auto;border-collapse: collapse;text-align: center;}
+        td{border: 1px solid;height: 50px;}
+    </style>
+</head>
+<body>
+    <div id="app" class="title">
+        <div class="one" id="zero">0</div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <table id="table"> </table>
+    <script>
+        /*3.删 删内容 innerHTML="" 
+            删属性 removeAttribute("属性名")
+            删元素 父元素对象.removeChild(子元素对象)  
+        4.增 增加元素
+            （1）创建元素  document.createElement("标签名")
+            （2）添加到对应的位置 父元素对象.appendChild(子元素对象)
+            （3）添加属性和内容    
+        */
+        var app=document.getElementById("app");
+        // app.innerHTML=""  //删内容
+        // app.removeAttribute("id") //删属性
+        // app.removeAttribute("class") //删属性
+        // var zero=document.getElementById("zero")
+        // app.removeChild(zero) //删除的是对象 所以需要我们设对象
+        // var divs=app.getElementsByTagName("div");
+        // for(var i=0;i<divs.length;i++){
+        //     app.removeChild(divs[i]) //数组长度改变了 
+        //     i--;
+        // }  两种循环时数组改变的解决办法
+        // var divs=app.getElementsByTagName("div");
+        // for(var i=divs.length-1;i=0;i--){
+        //     app.removeChild(divs[i]) 
+        // } //倒着循环 
+        var div=document.createElement("div")
+        div.innerHTML="hello"
+        div.id="title"
+        app.appendChild(div) //增加元素  先创建元素定义，定义元素内容，再加到父级对象里面
+        var data=[{name:"小明",age:18,salary:3500},{name:"小红",age:19,salary:4500},{name:"小刚",age:20,salary:5500},
+        {name:"小强",age:21,salary:6500},{name:"小陈",age:22,salary:7500},{name:"小白",age:23,salary:8500}];
+        var table=document.getElementById("table");
+        var tr=document.createElement("tr");//已经被加载到页面中
+        table.appendChild(tr);
+        //创建表头
+        for(var key in data[0]){
+            var td=document.createElement("td");
+            td.innerHTML=key;
+            tr.appendChild(td);
+        }
+        //追加数据行
+       for(var i=0;i<data.length;i++){
+        var tr=document.createElement("tr");
+        table.appendChild(tr);
+        for(var key in data[i]){
+            var td=document.createElement("td");
+            tr.appendChild(td);
+            td.innerHTML=data[i][key]//data[i]是数组中的每一项，key是每一项的值
+        }
+       }
+
+    </script>
+</body>
+</html>

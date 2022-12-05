@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM对象</title>
+    <style>
+        #app{color:blue;background: yellow;
+        margin-left: 30px;}
+        #box{color:yellow;}
+        
+    </style>
+</head>
+<body>
+    <div id="app" class="title">hello</div>
+    <div  class="title">world</div>
+    <ul id="foot">
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+    </ul>
+    <ul id="middle">
+        <li>2</li>
+        <li>2</li>
+        <li>2</li>
+        <li>2</li>
+    </ul>
+    <div id="head" class="end">
+        <div>3</div>
+        <div>3</div>
+        <div>3</div>
+
+    </div>
+
+
+    <script>
+        /*DOM对象：Document Object Model 文档对象模型
+        DOM操作1.增删改查 crud 所有写在元素开始标签之中的都是该元素对象的属性
+        1.查 ：查找元素
+            document.getElementById("id名") 返回元素对象
+            document.getElementsByClassName("class名") 返回数组 需要通过角标访问 注意class在js中是关键字，代表类
+            document.getElementsByTagName("标签名") 返回数组
+            docuemnt.getElementsByName("名字") 返回数组
+            document.querySelector(css选择器) 返回元素对象 永远只找第一个
+            document.querySelectorAll(css选择器) 返回的数组 万能选择器
+        2.改：
+            改属性 1.通过对象的方式
+            2.setAttribute("属性名","属性值")  getAttribute("属性名")
+            改内容 innerText 可以获取到元素开始标签到结束标签之间的文本内容
+            innerHTML可以获取到元素开始标签到结束标签之间的内容
+        3.删 删内容 innerHTML=""
+            删属性  removeAttribute("属性名")
+            删元素  父元素对象.removeChild(子元素对象)  //只能删除一个
+        4.增  增加元素
+            （1）创建元素 document.createElement("标签名")
+            （2）添加到对应的位置 父元素对象.appendChild(子元素对象)
+            （3）添加属性和内容
+        事件
+            用户的动作触发的
+            onclick:点击事件
+            onfocus：获得焦点事件
+            onblur：失去焦点事件
+        this
+            this指向的是函数运行时所在的对象(谁调用了函数，那么函数中的this就指谁)
+            window对象的属性和方法在访问的时候都可以省略前缀
+        ※html样式中的双引号在js中修改样式要更改
+    
+        */
+       var app=document.getElementById("app") //想在JS中操作html中元素的话，第一步是需要我们查找到该元素
+        console.log(app)
+        app=document.getElementsByClassName("title")
+        console.log(app[0])    
+        console.log(app[0].class)//undefined class是关键字 不能直接访问 要访问需要改成className
+        console.log(app[0].className) //title 返回class的名 
+        app=document.getElementsByTagName("div")
+        console.log(app) //HTMLCollection(2) [div#app.title, div.rir, app: div#app.title]  0: div#app.title  1: div.rir  app: div#app.title
+        //app=document.querySelector("#app") === app=document.querySelector(".title")
+        app=document.querySelector(".title")
+        console.log(app) //<div id="app" class="title">hello</div> 返回的是对象 永远只找第一个
+        console.log(typeof(app)) 
+        app=document.querySelectorAll(".title")
+        console.log(app) 
+        console.log(typeof(app)) 
+        var middle=document.querySelectorAll("#middle li") //第一种找到id下面的选择器方法
+        console.log(middle)
+        middle=document.getElementById("middle")
+        var mid=middle.getElementsByTagName("li") //第二种找到id下面的选择器方法 先拿到元素对象，在从元素对象下查找
+        console.log(mid)
+        app=document.getElementById("app")
+        app.id="box" //html中的id"app"已经被修改为"box" 一般修改样式不会修改id
+        app.className="aaa"
+        app.style.background="red"
+        app.style.marginLeft="200px" //css所有样式中的需要以横线连接的都要改为驼峰样式(即首字母大写，去掉横线)
+        app.setAttribute("id","app") //又将属性名id改为app
+        console.log(app)
+        console.log(foot.innerHTML) //结果是id为foot中开始到结束标签中所有的内容
+        app.innerHTML="你好"//修改元素里面的内容 会把开始标签到结束标签所有的内容都修改
+        app.innerHTML="<h3>你好<h3>" // 查询结果是"你好"两个字带有H3的标题标签属性，能识别字符串中的标签效果 es6中的`文本内容(样式)`(波浪键) 支持换行(重要点)
+        console.log(foot.innnerText) //已经失效？不认标签显示纯文本 结果为undefined 
+        var head=document.getElementById("head")
+        console.log(head)
+        var a="boss"
+        var h=40  
+        head.innerHTML="<div class="+a+">"+
+            "<div style='width:100px;height:"+ h +"px'>4</div>"+  //正确的加入样式方式
+            "<div>4</div>"+
+            "<div>4</div>"+"</div>"
+    </script>
+</body>
+</html>

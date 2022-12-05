@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组和对象</title>
+</head>
+<body>
+    <script>
+       /* function getEvenNumber(){
+            var n=0;
+            var e=0;
+            function fn(){
+                if (n%2==0){
+                    e=n;
+                }
+                n++;
+                return e
+            }
+            return fn;
+        }
+        var c=getEvenNumber();
+        console.log(c());
+        console.log(c());
+        console.log(c());
+        console.log(c());
+        console.log(c());
+        console.log(c());
+        console.log(c());
+        console.log(c());
+        console.log(c()); // 002244668 */
+        /*,
+        数组：批量存储多个同类数据的，多个数据以逗号隔开，数组是没有任何数据类型限制 的也没有任何数量限制的。 数组其实就相当于多个变量的集合 
+        数组的访问：数组名[角标] 访问的时候从0开始 数组的更改 ：数组名[角标]=新值 
+        数组的属性：length 直接返回数组的长度
+        原始数据类型和引用数据类型的区别：原始数据类型都是存在栈中（变量本地）,引用数据类型存在堆中(不在变量本地)*/
+        arr=[1,2,5,4,8,[3,7,9]]
+        console.log(arr[5][1]) // 7
+        console.log(arr.length) // 6
+        console.log(arr)
+        //栈和堆 原始数据类型和引用数据类型的差别：原始数据类型是存在栈中（变量本地），引用数据类型存在堆中(不在变量本地)
+        /*原始数据类型 1.Number(数字类型) 
+        2.String(字符串) 字符或者字符与其他数据的组合 字符串一定要加引号，加引号的数据一定是字符串 如果引号嵌套的情况，双引号里面可以放单引号，单引号里面不允许放双引号 变量名不能加引号 
+        3.Boolean(布尔类型) true false 4.undefined(未定义) 用来自动初始化变量的 5.null（空） 用来主动释放对象的 
+        引用数据类型 1.array(数组) 2.object(对象) 函数也是对象*/
+        /*对象：用来存储多个数据的 是由多个键值对组成的 用来描述一个事物的 相当于多个变量的集合 
+        格式 {key:value,key:value} 键/值对 属性名：属性值 
+        对象的访问：对象.属性名 看到了.前面一定是对象
+        如果对象的属性名是变量，那么访问的时候需要对象名[变量名]
+        对象的属性值是不限制数据类型的 对象的属性名一定是字符串，所以属性名可以省略引号，如果不加，js会自动帮你添加 对象的访问：对象.属性名 
+        对象的更改：对象.属性名=新值 如果本身存在这个属性就是更改，本身如果没有，那 就是添加
+        对象的属性的删除 delete 对象.属性 对象的循环 for(var 变量名 in 要遍历的对象){ 变量名代表的是属性 } 
+        对象的属性名如果是变量的话，那么需要加 [ ]*/
+        var Baoma={name:"BMW",type:740,price:1000000,seats:4};
+        console.log(Baoma.type) //740
+        console.log(Baoma)  //{name:"BMW",type:740,price:1000000,seats:4}
+        Baoma.name="Benz"
+        console.log(Baoma.name) //Benz
+        console.log(Baoma.length) // undefined
+        var car={name:"benz",type:[{"name":"x1",price:400000},{"name":"x2",price:500000}],seats:4};
+        console.log(car.type[0].price)//400000
+        console.log(car.type.length)//2
+    </script>
+</body>
+</html>

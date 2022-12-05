@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>省份联系框</title>
+</head>
+<body>
+    <select  id="province">
+        <option>---请选择省份---</option>
+    </select>
+    <select  id="city">
+        <option>---请选择城市---</option>
+    </select>
+    <script>
+        //onchange事件，当你选择不同选项的时候 才会触发
+        var province=document.getElementById("province")
+        var city=document.getElementById("city")
+        var options=city.getElementsByTagName("option")
+        var xmlhttp=new XMLHttpRequest();//创建Ajax对象
+        window.onload=function(){
+            xmlhttp.open("get","php/province.php",true) //创建请求
+            xmlhttp.send(null) //发送请求参数，get的参数在前面就获取
+            xmlhttp.onreadystatechange=function(){ 
+                if(xmlhttp.readyState==4&&xmlhttp.status==200){ //接收响应
+                    var provinces=xmlhttp.responseText
+                    var provincesArr=provinces.split(",") //我们拿到的是一个字符串，所以我们首先要想到将它们切割成数组，
+                    //它们之间明摆着由逗号隔开，所以用，进行切割
+                    for(var i=0;i<provincesArr.length;i++){  //省份的选择
+                        var option=document.createElement("option");
+                        province.appendChild(option) //这一步是增对象
+                        option.innerHTML=provincesArr[i]
+                    }
+                }
+            }
+            //城市的请求
+            province.onchange=function(){
+                //console.log(111) //检验有没有实行
+                for(var i=1;i<options.length;i++){
+                    city.removeChild(options[i])  //注意冒泡排序 数组长度改变了
+                    i--;
+                //city.innerHTML="<option>---请选择城市---</option>" 这一种方法更简单 它直接重新定义城市那一栏的界面
+                } //上面走完了 才会到下面，所以不影响下面的i，但是这里由两个i，上下两个都套了function
+                var provinceValue=province.value
+                xmlhttp.open("post","php/city.php",true) //创建请求
+                xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
+                xmlhttp.send("provinceName="+provinceValue)
+                xmlhttp.onreadystatechange=function(){ 
+                if(xmlhttp.readyState==4&&xmlhttp.status==200){ //接收响应
+                        var cities=xmlhttp.responseText;
+                        // console.log(cities) //记得一样要养成随时检验的习惯
+                        var citiesArr=cities.split(",") //切割
+                            for(var i=0;i<citiesArr.length;i++){  //省份的选择
+                            var option=document.createElement("option");
+                            city.appendChild(option) //这一步是增对象
+                            option.innerHTML=citiesArr[i]  //里面的对象没有清空 ，按照增删改查 我们需要在前面清空每次的选择数据
+                        }
+                    }
+                }
+            }
+        }
+        
+    </script>
+</body>
+</html>

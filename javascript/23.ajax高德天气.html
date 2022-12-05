@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天气预报</title>
+</head>
+<body>
+    <input type="text" id="weather">
+    <ul id="day"></ul>
+    <input type="text" id="weather1">
+    <h2 id="day1"></h2>
+    <input type="text" id="weather2">
+    <h2 id="day2"></h2>
+    <script>
+        var weather=document.getElementById("weather")
+        var day=document.getElementById("day")
+        var weather1=document.getElementById("weather1")
+        var day1=document.getElementById("day1")
+        var weather2=document.getElementById("weather2")
+        var day2=document.getElementById("day2")
+        weather.onblur=function(){
+        var xmlhttp=new XMLHttpRequest(); 
+        //创建高德天气的请求
+        xmlhttp.open("get","https://restapi.amap.com/v3/weather/weatherInfo?key=321eda30616897e2a558552f5e4f1a6e&city="+this.value+"&extensions=all",true);
+        xmlhttp.send(null);
+            xmlhttp.onreadystatechange=function(){ //接收响应
+                if(xmlhttp.readyState==4&&xmlhttp.status==200){
+                    var data=xmlhttp.responseText;
+                    data=JSON.parse(data);
+                    day.innerHTML="";
+                    if(data.count==0){
+                        day.innerHTML="暂无数据";
+                    }else{
+                        var city=data.forecasts[0].city;
+                        var list=data.forecasts[0].casts;
+                        for(var i=0;i<list.length;i++){
+                            var li=document.createElement("li");
+                            day.appendChild(li);
+                            li.innerHTML=city+list[i].date+"天气是"+list[i].dayweather+",温度是"+list[i].daytemp;
+                        }
+
+                    }
+                }
+            }
+        }
+        weather1.onblur=function(){
+        var xmlhttp=new XMLHttpRequest(); 
+        //创建高德天气的请求
+        xmlhttp.open("get","https://restapi.amap.com/v3/weather/weatherInfo?key=321eda30616897e2a558552f5e4f1a6e&city="+this.value,true);
+        xmlhttp.send(null);
+            xmlhttp.onreadystatechange=function(){ //接收响应
+                if(xmlhttp.readyState==4&&xmlhttp.status==200){
+                    var data=xmlhttp.responseText;
+                    data=JSON.parse(data);
+                    if(data.count==0){
+                        day.innerHTML="暂无数据";
+                    }else{
+                        var weather=data.lives[0];
+                    day1.innerHTML=weather.city+"的天气是"+weather.weather+",温度是"+weather.temperature+"摄氏度";
+                    console.log(data);//检查返回参数
+                    }
+                }
+            }
+        }
+        weather2.onblur=function(){
+        var xmlhttp=new XMLHttpRequest(); 
+        //创建高德天气的请求
+        xmlhttp.open("get","https://restapi.amap.com/v3/weather/weatherInfo?key=321eda30616897e2a558552f5e4f1a6e&city="+this.value,true);
+        xmlhttp.send(null);
+            xmlhttp.onreadystatechange=function(){ //接受响应
+                if(xmlhttp.readyState==4&&xmlhttp.status==200){
+                    var data=xmlhttp.responseText;
+                    data=JSON.parse(data);
+                    var weather=data.lives[0];
+                    day2.innerHTML=weather.city+"的天气是"+weather.weather+",温度是"+weather.temperature+"摄氏度";
+                    console.log(data);//检查返回参数
+                }
+            }
+        }
+        
+        
+    </script>
+</body>
+</html>

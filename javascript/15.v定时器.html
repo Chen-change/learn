@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定时器1</title>
+</head>
+<body>
+    <script>
+        /*定时器：让网页无人值守的时候自动进行的操作 定时器是让网页自动运行的唯一方法
+        目前所接触的第一个异步多线程的编程方案 不同步进行 但是一定比页面主线程慢
+        定时器的执行结果是线程号
+        1.周期性定时器：每隔一段时间，做啥事
+            案例：轮播图，倒计时
+            setinterval(干啥事，间隔毫秒数)
+        2.一次性定时器：等待一定的时间，做啥事
+            案例：弹窗广告
+            setTimeout(搞啥事,等待毫秒数)
+        3.如何停止定时器
+            clearInterval(线程号)
+            clearTimeout(线程号)
+        */
+        //    setInterval(function(){console.log(1)},1000) 
+        //    function fn(){
+        //     console.log(1)
+        //    }
+        //    setInterval(fn(),1000)  //错误 语法要规范 要么定义一个，要么在里面定义
+        //    setInterval(fn,1000)  //正确 和第一个方法相同 
+        setTimeout(function(){alert(2)},3000)
+        setTimeout(function(){alert(1)},3000)
+
+    </script>
+</body>
+</html>

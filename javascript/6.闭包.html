@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包</title>
+    <style></style>
+</head>
+<body>
+    <script>
+        // 局部作用域只有在函数调用的时候才创建，调用结束后会立即销毁
+        /*
+            概念：函数使用了不属于自己的局部变量，这种结构叫闭包（函数套函数） 里面的函数使用了外面函数定义的局部变量 
+            作用：保护变量的/避免全局污染 
+            性能问题：内存泄漏(占用你电脑多余的内存) 作用域中的局部变量一直被使用着，导致该作用域释放不掉
+            内存泄漏（Memory Leak）是指程序中已动态分配的堆内存由于某种原因程序未释放或无法释放，
+            造成系统内存的浪费，导致程序运行速度减慢甚至系统崩溃等严重后果。
+        */
+    //    var n=0;
+    //    function getUnique(){
+    //     return ++n
+    //    }
+    //    console.log(getUnique())
+    //    console.log(getUnique())
+    //    console.log(getUnique())
+    //    console.log(getUnique())
+    //    console.log(getUnique())  结果是1,2,3,4,5 但是n是全局变量 当n修改时，函数调用的值无法正常延续，需要闭包
+        function getUnique(){
+            var n=0;//此时n为局部变量 
+            function fn(){
+                return ++n;
+            } //类似于 var fn=function(){return ++n} 这是一个函数
+            return fn //这是返回一个函数，如果是fn()就是返回一个值 
+        }   
+        var c=getUnique() 
+        console.log(c()) //c加()指的是调用fn这个函数，fn这个函数的效果是计数器，自增
+        console.log(c())
+        console.log(c())
+        console.log(c())
+        console.log(c())
+        n=100;
+        console.log(c()) //结果还是1,2,3,4,5,6 因为n是局部变量，不会随着外界n的变换而更改数值，只和局部变量函数有关
+ 
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <div class="intro">Hello World</div>
+    <script>
+        // 简易封装一个函数
+        // function $(el){
+        //     return document.getElementById(el)
+        // } //封装一个函数，让我们创建一个快捷获取元素
+        // $("app") //这样方便快捷
+        /*jQuery选择器，就是简化版的js，能极大方便我们编译代码 详见菜鸟教程-jQuery环节
+            通过jQuery选择器获取的元素调用jQuery的方法，那么他会自动对选到的每个元素去执行该方法
+            jquery和js不要混合使用
+        */
+        console.log($("#app"))
+        var hello=document.getElementsByClassName("intro")
+        hello[0].onclick=function(){
+            hello[0].innerHTML="whywhywhy";
+        }
+    </script>
+</body>
+</html>

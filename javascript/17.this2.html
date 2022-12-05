@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡</title>
+    <style>
+        .tabs{width:120px;height: 50px;text-align: center;line-height: 50px;float: left;margin-left: 100px;}
+        .clear:after{
+            content: "";
+            display: block;
+            /* 内联转块 才能用样式 内容为空 */
+            clear:both
+        }
+        .content{width: 480px;height: 300px;display: none;}
+
+    </style>
+</head>
+<body>
+    <!-- 头部tab标签 -->
+    <div class="clear head">
+        <div class="tabs" style="background: red;">体育新闻</div>
+        <div class="tabs" style="background: blue;">汽车新闻</div>
+        <div class="tabs" style="background: pink;">娱乐新闻</div>
+        <div class="tabs" style="background: yellow;">国际新闻</div>
+    </div>
+    
+    <!-- 内容部分 -->
+    <div class="bottom">
+        <div class="content" style="background: red;">
+            <div>功德比赛正式开赛</div>
+            <div>世界杯正如火如荼的进行</div>
+            <div>霍华德加入中国弯弯队</div>
+        </div>
+        <div class="content" style="background: blue;">
+            <div>奔驰2022款上市</div>
+            <div>特斯拉又又又炸了</div>
+            <div>宝马新车帅的一比</div>
+        </div>
+        <div class="content" style="background: pink;">
+            <div>震惊,大碗宽面吴某凡获刑13年</div>
+            <div>吴某凡追缴罚金6亿元</div>
+            <div>是的,我和xx有个孩子,华某宇如是说到</div>
+        </div>
+        <div class="content" style="background: yellow;">
+            <div>江泽民同志于上海逝世,享年96岁</div>
+            <div>震惊,日本首相安倍被枪杀,凶手竟然是男枪</div>
+            <div>英国伊丽莎白二世逝世</div>
+        </div>
+    </div>
+    <script>
+        //选项卡
+        var tabs=document.getElementsByClassName("tabs");
+        var contents=document.getElementsByClassName("content")
+        for(var i=0;i<tabs.length;i++){
+            tabs[i].index=i;
+            tabs[i].onclick=function(){
+                for(var j=0;j<contents.length;j++){
+                    contents[j].style.display="none"
+                } //让其他所有的内容隐藏
+                contents[this.index].style.display="block" //让点击tabs时,内容的脚标和标题的脚标相同,使得内容显示
+            }
+        }
+
+    </script>
+</body>
+</html>

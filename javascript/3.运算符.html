@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3.1运算符</title>
+</head>
+<body>
+    <div></div>
+
+    <script>
+    /* 程序运算的符号：+ - * / %（取余）
+     ++ --（单独使用的时候，放前房后都一样 如果在表达式中，后++ 代表的是先用旧值参加表达式，表达式结束在+1
+     前++ 代表的是先+1，再参与表达式）
+    算术运算符只适用于Number类型的 不允许连着写
+    2.赋值运算符= += -= %=
+    3.字符串连接运算符 + 任何数据与字符串拼接，结果都是字符串 
+    4.三目(元)运算符： 条件?条件成立时候的值:条件不成立时候的值
+    5.关系运算符> < >= <= ==(不严格相等 可以转换 字符串会转换为数据类型 true为1 false为0) ===(严格相等) != !==   
+    6.逻辑运算符：与（&&） 或（|| ） 非 （！）
+    如果出现联等符号，从右往左读
+     */
+        var a=123;
+        a=a+1;
+        var b=234;
+        var c=a+b;
+        console.log(c);
+
+        var i=1;
+        var j=i++;
+        console.log(i)//2;
+        console.log(j)//1;
+
+        var n=5;
+        console.log((n++)+(++n)+(n++));// 5+7+7=19
+        var p=(n++)+(++n)+(n++);//8+10+10=28
+        console.log(p)
+
+        var q=5;
+        var w=6;
+        var e=q=w;
+        console.log(q);//q=w=6
+        console.log(w);
+        console.log(e);//e=q=6 从右往左
+
+        var r=5;
+        r+=5;//r=r+5
+        console.log(r)//r=10
+
+        var name="陈";
+        var coin=5000;
+        console.log(name+"挣了"+coin+"金币");//字符串相加后会发生字符转换，会将Boolean转换为字符串
+        coin=true;
+        console.log(name+coin);//陈true 
+        var kong
+        console.log(name+kong);//陈undefined
+
+        var z=8;
+        var x=10;
+        console.log(z<x);//true 关系运算符结果为布尔类型 true或false
+    </script>
+</body>
+</html>

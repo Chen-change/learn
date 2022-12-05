@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件对象</title>
+    <style>
+        .head{width: 200px;height: 150px;background: red;margin: auto;padding-top: 50px;}
+        .d1{width: 100px;height: 75px;background: yellow;margin: auto;padding-top: 25px;}
+        .d2{width: 50px;height: 50px;margin: auto;background: pink;}
+    </style>
+</head>
+<body>
+    <div id="app">hello</div>
+    <div class="head">
+        <div class="d1">
+            <div class="d2"></div>
+        </div>
+        
+    </div>
+    <script>
+        var app=document.getElementById("app")
+        function alertMe(){
+            alert("123")
+        }
+        function consoleMe(){
+            console.log("456")
+        } //点击一下触发两个对象,onclick不能满足,会被覆盖
+        /*绑定事件的几种方式
+        1.obj.onclick=function()
+        2.在元素开始标签内绑定
+        3.obj.addEventListener("事件名",方法,是否在捕获阶段触发(true or false))
+        onclick=on+事件名=事件处理函数
+        */
+        app.addEventListener("click",alertMe,false);
+        app.addEventListener("click",consoleMe,false);//这样子事件不会覆盖 而是会顺序进行,一个元素就能绑定几个事件
+        app.removeEventListener("click",alertMe.false);//移除绑定事件 和绑定事件方式一样
+        /*事件触发周期
+            事件捕获(外--里)--目标触发--事件冒泡(里--外)
+            事件对象：默认在事件触发的时候自动传入函数的第一个参数，与生俱来的，不是后天
+            传入的
+            阻止冒泡: e.stopPropagation()
+            事件委托:利用冒泡 利用父子级(在父级身上绑定)关系绑定事件
+            事件源对象:e.target*/
+        var divs=document.getElementsByTagName("div")
+        for(var i=0;i<divs.length;i++){
+            // divs[i].addEventListener("click",function(){
+            //     this.style.background="blue";
+            //     alert(this.className);
+            //     this.style.background="";
+            // },true)//当false时,块由内向外变蓝,在变回原来的颜色,事件冒泡由立向外,当true时.捕获阶段触发,由外向里,一般不允许捕获阶段触发
+            // divs[i].onclick=function(e){
+            //     console.log(e.target) //事件源对象
+            //     this.style.background="blue"
+            //     alert(this.className);
+            //     this.style.background="";
+            // }
+            divs[i].onclick=function(e){
+                    console.log(e.target) //事件源对象
+                    e.target.style.background="blue"
+                    alert(e.target.className);
+                    e.target.style.background="";//事件对象的作用,通过target准确知道是谁触发的该事件
+                    e.stopPropagation();//阻止冒泡,只触发一次就停止
+                } 
+                
+        } 
+
+    </script>
+</body>
+</html>

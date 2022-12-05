@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>循环</title>
+    <style></style>
+</head>
+<body>
+    <script>
+        /*函数本身就是一个特殊的数据，既是变量里面能存函数，对象里面也能够存储函数*/
+        var car={name:"benz",type:[{"name":"x1",price:400000},{"name":"x2",price:500000}],seats:4,
+        fn:function(){alert("我跑得飞快")}};
+        //car.fn()//弹窗出来 我跑得飞快
+        console.log(car.fn)//ƒ (){alert("我跑得飞快")} 数组对象函数这一切其实都是对象(数组对象函数)
+        console.log(typeof(car)) //object类型
+        // null:空对象指针 用来主动释放对象  可以使之不占内存
+        /*循环：程序反复执行同一套代码
+        三要素：1.循环变量：循环中做判断的量.衡量循环是否继续进行的标准，循环变量一定是向着循环退出的趋势变化
+        2.循环条件：保证循环能继续进行的条件，一旦条件不满足，立马退出
+        3.循环体:循环中每次要做的事
+        循环种类：1.while(条件)(做的事)  
+        var n=0;
+        while(n<5){
+        n++;
+        console.log("我转了"+n+"圈")}     
+        2.for()(做的事)
+        3.for (var key in obj){}
+        */ 
+       for(var n=1;n<7;n++){
+        console.log("我转了"+n+"圈")
+       } //我转了1圈 我转了2圈 我转了3圈 我转了4圈 我转了5圈 我转了6圈.
+       var week=[1,2,3,4,5,6,7]
+       for(var i=0;i<week.length;i++){
+        if(week[i]==7)
+        {week[i]="星期日"}
+        else{ week[i]="星期"+week[i]} 
+       }
+       console.log(week)
+       var cars={name:"bmw",model:"530",price:480000,color:"red"};
+       for(var key in cars){
+        console.log(key)//name model price color
+        console.log(cars[key])//bmw 530 480000 red
+       }
+       var names=["张三","李四","王五","赵六","铁柱","小红","刘能"];
+       for(var i=0;i<names.length;i++){ 
+        console.log(1)
+        if(names[i]=="铁柱"){        
+            alert("原来你小子在这里啊");
+            break;//如果找到铁柱了就会将程序中断(循环中断);
+            //return;//Uncaught SyntaxError: Illegal return statement:未捕获语法错误：非法返回语句，return只在函数使用
+        }
+       }
+       var data=[1,2,3,4,5,6,7]
+       for(var i=0;i<data.length;i++){
+        if(data[i]==3){continue}//当前代码不继续执行，跳过然后继续下一轮循环 
+        data[i]="星期"+data[i]
+       }
+       console.log(data)
+    </script>
+</body>
+</html>

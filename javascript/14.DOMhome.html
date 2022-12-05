@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="head" class="title">
+        <ul>
+            <li class="zreo">2</li>
+            <li>2</li>
+            <li>2</li>
+            <li>2</li>
+        </ul>
+    </div>
+    <script>
+        var a=document.getElementById("head")
+        console.log(a)
+        var b=40;
+        var title="boss"
+        a.innerHTML="<div class="+title+">"+
+            "<div style='width:100px;height:"+ b +"px'>4</div>"+  //正确的加入样式方式
+            "<div>4</div>"+
+            "<div>4</div>"+"</div>"
+        
+    </script>
+</body>
+</html>

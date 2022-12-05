@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>还是数组对象</title>
+</head>
+<body>
+    <script>
+        //splice(从哪一位开始删除，删几个,新值,新值,新值...) 用来实现数组的删除,替换,插入
+        //  
+        // a.splice(2,1);
+        // console.log(a);//结果为[1,2,4]从角标2开始删，删1位
+        //a.splice(1,2,5,6,7);
+        //console.log(a);//结果为[1, 5, 6, 7, 4] 如果想不删，只是插入，那么将删几个改为0
+        //sort() 排序 默认
+        var arr=[1,1,1,5,2,"a","5",5,5,2,5,"hello",8,7,4,4,8,6];
+        for(var j=0;j<arr.length-1;j++){  //length的长度也会随着数组的改变而改变，所以不容易出现无谓的循环
+            for(var i=j+1;i<arr.length;i++){
+                        if(arr[j]===arr[i]){
+                            arr.splice(i,1);
+                            i--;//判定成立时，数组的长度会发生变化，所以我们需要向前递进一位
+                        } 
+                    }
+        }
+        console.log(arr)
+        // var a=[12,88,45,16,1,33,554,34,8,77];// 结果为[1, 12, 16, 33, 34, 45, 554, 77, 8, 88]
+        // a.sort() //按照unicode编码来排的 
+        // console.log(a)
+        // 改进方法:
+        var a=[12,88,45,16,1,33,554,34,8,77];
+        a.sort(function(a,b){return a-b}) //b-a为从大到小
+        console.log(a) //[1, 8, 12, 16, 33, 34, 45, 77, 88, 554]
+    </script>
+</body>
+</html>

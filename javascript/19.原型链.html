@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*原型链:隐式原型指向原型对象形成的链  :所有的对象都是Object的子集 所有的函数都是Function的子集
+        (1)js里一切皆对象,函数也是一个特殊的对象
+            Function 代表的是所有函数的父类
+        (2)__proto__:隐式原型。 任何一个对象都有隐式原型，用来实现继承的
+            隐式原型:一个对象的隐式原型默认指向创建该对象的构造函数的原型对象 类似于dna 指向父级 正是有这一个 才能实现继承
+        (3)在js中没有任何一个对象是凭空来的 Function是所有函数的父级(最大父级,空概念,不会用到)
+        原型链主要是理解什么是原型链 通俗来讲 原型链指的是隐式原型指向原型对象形成的链,我们基本只用到子集指到父级时
+        使用父级所共同拥有的功能
+            */
+           var a=new Object()
+           a.name="xiaom"
+           a.age=18;
+           console.log(a)
+           function Student(){
+            this.name=name
+            this.age=age
+           }
+    </script>
+</body>
+</html>

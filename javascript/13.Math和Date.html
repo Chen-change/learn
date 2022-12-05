@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>math和Date</title>
+</head>
+<body>
+    <script>
+        /*7.Math对象：
+            round:四舍五入取整 区别于toFixed(保留的小数位) 后者是可以选择保留几位小数，在最后一位四舍五入
+            abs():取绝对值 正数
+            ceil():向上取整 进一 不管小数点是多少
+            floor():想下取整
+            min()max();取最大最小值 不能接收数组当参数
+            random()：取随机数 取0-1之间的随机数
+            pow(x,y)返回x的y次幂.
+          8.Date对象：封装了所有与日期相关的api
+            1.创建日期对象：new Date() 默认保存的是当前时间
+            2.日期对象可以直接相减，得到的是间隔毫秒数
+            3.getFullYear() 返回是哪年 number
+            4.getMonth()返回的是月份 0-11 要+1修正
+            5.getDate() 1-31
+            6.getDay() 0-6
+            7.getHours() 0-23
+            8.getMinutes() 0-59
+            9.getSeconds() 0-59
+            10.getMilliSeconds() 0-999
+            11.getTime()返回的是1970-1-1至今的毫秒数
+            12.以上get方法全改为set即为更改时间，注意，没有setDay()方法
+        */
+       var a=5.34641;
+       var math=Math.round(a);
+       console.log(math) //5
+       console.log(Math.max(5,1,55,48,6,22))//
+       //var arr=[5,4,8,99,84,15,2]
+       //console.log(Math.max(arr)) //结果为NaN 注意不能接受数组当参数，只能接受参数序列
+       //var index=Math.ceil(Math.random()*1000)//向上取整(0-1的1000倍数)随机
+       //console.log("恭喜"+index+"号员工中奖") 
+       //var index=Math.floor(Math.random()*51)+50;
+       //console.log("恭喜"+index+"号员工中奖") //控制区间做手脚  50-100区间 
+        var date=new Date();//创建的时候 默认保存的是当前日期
+        console.log(date) //Tue Oct 18 2022 22:32:18 GMT+0800 (中国标准时间)
+        console.log(typeof(date)) //object 对象
+        date=new Date("2022.11.11 00:00:00");
+        console.log(date)   
+        var now=new Date()
+        console.log(Math.floor((date-now)/1000/60/60/24))
+        a=now.getFullYear();
+        console.log(a)
+        a=now.getMonth();
+        console.log(a+1);
+        // a=now.getTime();
+        // console.log(a/1000/3600/24/365)
+        a=new Date();
+        a.setDate(24);//只单独修改天数号
+        console.log(a);//Tue Oct 25 2022 22:58:33 GMT+0800 (中国标准时间) 
+    </script>
+</body>
+</html>

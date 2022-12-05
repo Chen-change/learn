@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运算符2  </title>
+</head>
+<body>
+    <script>
+        var a=5;
+        var b=8;
+        var c=7;
+        console.log(a<b||b<c);//true
+        console.log(a<b&&b<c);//false
+        console.log(a<b&&(b>c||b!=0));//true
+        console.log(a<b&&b>c||b!=0);//true
+        console.log(!a>b);//false !取反
+        console.log(!(a>b));//true
+        /*三目(元)运算符： 条件?条件成立时候的值:条件不成立时候的值
+        js中的隐式类型转换：js根据场景自动将数据类型进行转换 Number和字符转运算时，Number会自动转为字符串
+        true默认为1 false默认为0
+        js中的显示类型转换：*/
+        console.log(a>b?"哈哈":"呜呜");//呜呜
+        console.log(a<b?"哈哈":"呜呜");//哈哈
+        console.log(9?a:b)//5 9默认为真 true
+        console.log(!9?a:b)//8 !9默认为非 false
+        console.log(!123)
+        if(a>b)
+        {
+            alert("我好像比你大")
+        }else{
+            alert("“不对 我比你小")};//不对，我比你小 if else语句
+
+        var grade=90;
+        if(grade>=90){
+            alert("优秀")
+        }
+        else if   (grade>=80)  {
+            alert("良好")
+        }
+        else if(grade>=60){
+            alert("及格")
+        }
+        else
+        {
+            alert  ("不及格")
+        }
+        var n=5;
+        var m=6;
+        if(n>m) {
+           var z=n++
+        }
+        else {
+            var z=n--
+        }
+        console.log(z)
+        grade=73;
+        var x=grade>=90?"优秀":(grade>=80?"良好":(grade>=70?"及格":"不及格"))
+        console.log(x)
+        //在条件判断中，只有以下六种情况算false，其他的全为true
+        //false 0 undefined null "" NaN 以上这些算是false
+        //特殊运算符 typeof 检测数据类型
+        var a="hah"
+        console.log(typeof(a))
+    </script>
+</body>
+</html>

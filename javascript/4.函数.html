@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>函数</title>
+</head>
+
+<body>
+
+    <script>
+        /*
+        函数：封装了一段执行专门任务的代码段。
+        什么情况下用函数：如果一段代码要反复调用，那么就考虑封装成函数了 封装一段执行专门任务的代码段。
+        函数是不调用不执行的 function 函数名(参数){ 代码段//想干的事 };整体提升
+        var 函数名=function(参数){代码段} 声明提升 无特殊要求，都是使用function
+        如果要执行函数的话要调用函数 函数名()
+        函数是不调用不执行的
+        1.参数：函数内独有的变量，接受传入数据，在方法内处理
+            形参：函数定义时的参数
+            实参：函数调用时候的参数
+            如果函数定义的时候定义了形参，那么一定要传实参。
+            参数不限制与数量
+            表达式等价于值
+        2.return关键字：return的本意是退出函数运行，如果咋return后面加值的话，那么会在退出的返回这个值
+            函数默认是没有结果的，函数是个纯过程
+            */
+        // var grade = 90;
+        // if (grade >= 90) {
+        //     alert("优秀")
+        // }
+        // else if (grade >= 80) {
+        //     alert("良好")
+        // }
+        // else if (grade >= 60) {
+        //     alert("及格")
+        // }
+        // else {
+        //     alert("不及格")
+        // }
+        // ALT+Shift+F 能快速整理代码
+        function check(grade) {
+            
+            if (grade >= 90) {
+                alert("优秀")
+            }
+            else if (grade >= 80) {
+                alert("良好")
+            }
+            else if (grade >= 60) {
+                alert("及格")
+            }
+            else {
+                alert("不及格")
+            }
+        }
+        check(80);
+        check(55);
+        check(92);
+
+        // function add(a,b){
+        //     alert(a+b)
+        // }
+        // add(2,3)
+        // add(153,255) 
+        //如果在 var上面加一个add(2.3)那么函数会报错，因为函数声明会提前，但函数赋值不会提前,所以不会调用函数,
+        //var add=function(a,b){console.log(a+b)}
+        // function add(a,b){
+        //     alert(a+b)
+        // }
+        // var c=add(3,5);
+        // console.log(c)
+        //结果是弹窗为8，但控制台中c的值为undefined，因为函数默认是没有结果的，函数是个纯过程
+        // function add(a,b){
+        //     return a+b;
+        // }
+        // var c=add(3,5);
+        // console.log(c) 
+        //return关键字：return的本意是退出函数运行，如果在return后面加值的话，
+        //那么会在退出的返回这个值 c的值在控制台为8
+        var a=5;
+        var b=16;
+        var c=12;
+        // function getMax(m,n,o){
+        //     if(m>n&&m>o){
+        //         alert(m)
+        //     }
+        //     else if(n>o){
+        //         alert(n)
+        //     }
+        //     else {alert(o)}
+        // }
+        // getMax(a,b,c) //弹窗方式
+        function getMax(m,n,o){
+            var max=m;
+            max=m>n?m:n;
+            max=max>o?max:o;
+            return max
+            // var max=m;
+            //  if(m>n){
+            //     max=m
+            // }else {max=n}
+            // if(max<z){max=z}
+            // return max
+        }
+        console.log(getMax(a,b,c))
+    </script>
+</body>
+
+</html>
